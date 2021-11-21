@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="conatiner-fluid mt-3" style="margin-left: 10px;">
+        <div class="row mx-auto">
+        <!-- filter -->
+            <div class="col-lg-3 mx-auto mb-3 " style="background-color: rgb(248, 250, 252); border-radius: 5px;">
+                
+            </div>
+            
+            <div id='products' class="col-lg-9 mx-auto">
+                <div class="row mx-auto">
+                    {% for artist in artists %}
+                        <div class="container__info">
+                            <span><i class="fas fa-eye"></i>2350</span>
+                        </div>
+                        <div class="container__profile">
+                            <img
+                            src=""
+                            alt="people"
+                            />
+                            <div class="container__profile__text">
+                            <h2>White Mountains</h2>
+                            <p>by <b>Joseph Therrien</b></p>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
