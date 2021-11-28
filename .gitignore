@@ -1,2 +1,6 @@
 venv/
+
 *.sqlite3
+*.log
+
+posts/

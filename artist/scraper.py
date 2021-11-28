@@ -49,7 +49,7 @@ while True:
 
 
         browser.execute_script("window.scrollTo(0, 2000);")
-        pictures = browser.find_elements_by_css_selector("div[class='eLAPa']")
+        pictures = browser.find_elements_by_tag_name("div[class='eLAPa']")
 
 
 
@@ -68,16 +68,17 @@ while True:
 
             time.sleep(5)
 
-
-
-            like = browser.find_element_by_partial_link_text("like")
-            like_value = like.text
-            print("bruhhhhhhhhhhhhhhhh"+like_value)
-            like_value = re.split("\s", like_value)
-            like_value = like_value[0]
-            like_value = re.sub(",","",like_value)
-            like_value = int(like_value)
+            like_value = browser.find_element_by_xpath("div[@class='Igw0E']/div/a/span").text
             print(like_value)
+
+            # like = browser.find_element_by_partial_link_text("like")
+            # like_value = like.text
+            # print("bruhhhhhhhhhhhhhhhh"+like_value)
+            # like_value = re.split("\s", like_value)
+            # like_value = like_value[0]
+            # like_value = re.sub(",","",like_value)
+            # like_value = int(like_value)
+            # print(like_value)
 
             #getting the time it was posted on
             posted_on = browser.find_element_by_class_name("Nzb55").get_attribute("title")
@@ -93,6 +94,9 @@ while True:
             artist_name = browser.find_element_by_class_name("yWX7d").text
             artist_link = browser.find_element_by_class_name("yWX7d").get_attribute("href")
             print(artist_name,artist_link)
+
+            artist_pp = browser.find_element_by_class_name("_6q-tv").get_attribute("src")
+            print(F'************************{artist_pp}')
 
             #getting the post
             artist_post = browser.find_element_by_class_name("FFVAD").get_attribute('src')
