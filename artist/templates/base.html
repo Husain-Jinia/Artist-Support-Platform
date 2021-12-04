@@ -8,6 +8,7 @@
     rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
+    <!-- <a href='https://www.freepik.com/photos/abstract-background'>Abstract background photo created by rawpixel.com - www.freepik.com</a> -->
     <title>UIA</title>
 </head>
 <body>
@@ -19,8 +20,12 @@
         <ul class="nav-links d-flex m-0">
         <i class="hide-toggle gg-close"></i>
         <il class="nav-link"><a href="{% url 'homepage'%}">Home</a></il>
-        <il class="nav-link"><a href="{% url 'artpage'%}">Artpage</a></il>
+        <il class="nav-link"><a href="{% url 'artpage'%}">Explore</a></il>
+        <il class="nav-link"><a href="{% url 'about'%}">About</a></il>
+        {%if user.is_authenticated %}
         <il class="nav-link"><a href="{% url 'adminpage'%}">Admin</a></il>
+        <il class="nav-link"><a href="{% url 'adminlogout'%}">Logout</a></il>
+        {%endif%}
         </ul>
         <div class="menu-toggle">
         <i class="d-sm-block d-sm-none gg-menu-right"></i>
@@ -38,6 +43,7 @@
         *,
         *::after,
         *::before {
+        display: border-box;
         font-family: "Poppins", sans-serif;
         }
 
@@ -50,6 +56,7 @@
         }
 
         body {
+        width:100%;
         overflow-x: hidden;
         min-height: 100vh;
         }

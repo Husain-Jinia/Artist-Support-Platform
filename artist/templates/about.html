@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <!-- <div class="m-3" style="display: flex; flex-direction: column; justify-content: space-between; ">
+            <p style="font-size: 35px; padding-left: 5px; font-weight: 300;">ABOUT ME  </p>
+        </div> -->
+        <div class="my-3 mx-3 mainheader">
+            <div class="m-3">
+                <aside class="profile-card">
+
+                    <header >
+                  
+
+                      <a href="https://instagram.com">
+                        <img src="{% static "images/pp.jpg" %}">
+                      </a>
+                  
+
+                      <h1>Husain Jinia</h1>
+
+                      <h2>Full stack developer</h2>
+                  
+                    </header>
+                  
+                    <div class="profile-bio">
+                  
+                      <p>I am a <span class="text-color">full stack web developer </span >as well as a <span class="text-color">digital artist</span>.</p>
+                  
+                    </div>
+                
+                    <ul class="profile-social-links">
+                      <li>
+                        <a href="https://twitter.com/tutsplus">
+                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-twitter.svg">
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://codepen.io/tutsplus">
+                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-codepen.svg">
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://envato.com">
+                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-envato.svg">
+                        </a>
+                      </li>
+                    </ul>
+                    
+                  </aside>  
+            </div>
+            <div class="mx-3 py-3" style="letter-spacing: 1px;">
+                <p style="font-size: 22px; margin-top: 2%;">Hi, I am <span>Husain Jinia</span></p>
+                <p style="padding-top: 1%; font-size: 16.8px;">I am a <span class="text-color">full stack web developer </span >as well as a <span class="text-color">digital artist</span>. The goal of creating this website is to give the upcoming artists the recognition they deserve. The path as an artist is not easy especially when you are short on money to afford education from a good art college. My vision with this website is to help such struggling artists who are really good at what they do but are unable to get the reach and therefore resulting in lack of motivation which further kills their creativity. </p>
+            </div>
+        </div>
+        <div style="padding:2%; background-color:rgb(250, 250, 250); margin-top: 7%;">
+            <div style="margin-top: 2%; margin-bottom: 3%; margin-left: 1%;">
+                <p style="font-size: 27px; padding-left: 5px; font-weight: 400; letter-spacing: 1.2px;">How does it work ?</p>
+            </div>
+            <div>
+                <ul style="letter-spacing: 1.1px;">
+                    <li  class="rules">We first route to specific instagram hashtags to look for artists.</li>
+                    <li class="rules">After that we scrape the posts and the user information that is publicly available.</li>
+                    <li class="rules">Artists are then selected based on various criterias such as the amount of likes they have recieved within a particular time range. </li>
+                    <li class="rules">Finally the selected artists are then featured on our art page tab.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="quotes">
+            <div style="margin: 1%; padding: 2%; font-family: 'Times New Roman', Times, serif;">
+                <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">“When I need some striking inspiration about deep depression for my new painting, I just need to go to check my bank account...” </p>
+                <p style="font-size: 14px;" class="quotes1">~ Hiroko Sakai </p>
+            </div>
+            <div style="margin: 1%; padding: 2%; font-family: 'Times New Roman', Times, serif;">
+                <p style="font-size: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">“The privilege of struggling artists is ... the life being buried in what we can't really afford of* what a gorgeous life!!” </p>
+                <p style="font-size: 14px;">~ Hiroko Sakai </p>
+            </div>
+            <div style="margin: 1%; padding: 2%; ">
+                <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">“Creativity without discipline will struggle, creativity with discipline will succeed.” </p>
+                <p style="font-size: 14px;">~ Amit Kalantri</p>
+            </div>
+        </div>
+    </div>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300);
+        
+        .mainheader{
+            display:flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .quotes{
+            display: flex; justify-content: space-between; margin: 3%; margin-top: 5%
+        }
+
+        @media only screen and (max-width:1280px) {
+            .mainheader{
+                display:flex;
+                justify-content: space-between;
+                flex-direction: column;
+            }
+            .quotes{
+                display: flex; 
+                justify-content: space-between;
+                flex-direction: column;
+                margin-top: 5%;
+                opacity:1;
+            }
+            .quotes1{
+                opacity:1;
+            }
+        }
+
+        .profile-card * ,
+        .profile-card *:before ,
+        .profile-card *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        } 
+
+        .profile-card {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            height: 210px;
+            margin: 20px auto;
+            width: 320px;
+            overflow: hidden;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .profile-card header {
+            background: #0e9e15;
+            padding: 1px;
+            height: 10px;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .profile-card header img {
+            border: 5px solid #fff;
+            border-radius: 50%;
+            display: block;
+            margin: 10px auto;
+            width: 120px;
+        }
+
+        .profile-card header h1 {
+            color: #127216;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            text-align: center;
+            line-height: 1;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            padding-bottom: 10px;
+            font-size: 23px;
+        }
+
+        .profile-card header h2 {
+            color: #0e9e15;
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin: 0 0 5px;
+            text-align: center;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .profile-card .profile-bio {
+            padding: 20px;
+            position: relative;
+            opacity: 0;
+            -webkit-transition: all 0.3s 0.25s;
+            -moz-transition: all 0.3s 0.25s;
+            -o-transition: all 0.3s 0.25s;
+            transition: all 0.3s 0.25s;
+        }
+
+        .profile-card .profile-bio p {
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            text-align: center;
+            font-family:  "Open Sans";
+        }
+
+        .profile-card .profile-social-links {
+            display: block;
+            list-style-type: none;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            width: 160px;
+        }
+
+        .profile-card .profile-social-links li {
+            display: block;
+            float: left;
+            -webkit-transform: translateY(100px);
+            -moz-transform: translateY(100px);
+            -ms-transform: translateY(100px);
+            -o-transform: translateY(100px);
+            transform: translateY(100px);
+            -webkit-transition: all 0.3s cubic-bezier(0, 1.135, 0.73, 1.405) 0.25s;
+            -moz-transition: all 0.3s cubic-bezier(0, 1.135, 0.73, 1.405) 0.25s;
+            -ms-transition: all 0.3s cubic-bezier(0, 1.135, 0.73, 1.405) 0.25s;
+            transition: all 0.3s cubic-bezier(0, 1.135, 0.73, 1.405) 0.25s;
+        }
+
+        .profile-card .profile-social-links li:nth-child(2) {
+            -webkit-transition-delay: 0.35s;
+            -moz-transition-delay: 0.35s;
+            -o-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+        }
+
+        .profile-card .profile-social-links li:nth-child(3) {
+            -webkit-transition-delay: 0.45s;
+            -moz-transition-delay: 0.45s;
+            -o-transition-delay: 0.45s;
+            transition-delay: 0.45s;
+        }
+
+        .profile-card .profile-social-links li a {
+            background: rgba(255, 112, 67, 0.2);
+            border-radius: 50%;
+            display: block;
+            float: left;
+            height: 40px;
+            margin: 0 5px;
+            outline: 0 none;
+            width: 40px;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .profile-card .profile-social-links li a:hover {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        .profile-card .profile-social-links li a img {
+            padding: 5px;
+            width: 40px;
+        }
+
+        /*  CHANGES  ON HOVER  */
+
+        .profile-card:hover {
+            height: 300px;
+        }
+        .profile-card:hover header {
+            height: 140px;
+        }
+
+        .profile-card:hover header h1,
+        .profile-card:hover header h2 {
+            color: #fff;
+        }
+
+        .profile-card:hover .profile-bio {
+            opacity: 1;
+        }
+
+        .profile-card:hover  .profile-social-links li {
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .text-color{
+            color: rgb(37, 143, 33);
+            font-weight: 700;
+        }
+
+        .rules{
+            margin-bottom: 2%;
+        }
+
+        
+    </style>
+{% endblock content %}
+

@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
-from .models import Artist
+from .models import Posts
 import re
 from .models import Tagname
 import urllib3
@@ -13,6 +13,9 @@ from urllib3 import ProxyManager, make_headers
 import requests
 import tempfile
 from django.core import files
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from io import BytesIO
 from .credentials import my_username, my_password
 
@@ -21,7 +24,7 @@ def home(request):
     
     return render(request, "homepage.html")
 
-
+@login_required
 def adminpage(request):
     return render(request, "adminpage.html")
 
@@ -51,7 +54,7 @@ def scrape(request):
 
 
     tags = [
-        "sketch"
+        "oc"
     ]
 
 
@@ -124,38 +127,6 @@ def scrape(request):
                 artist_pp = browser.find_element_by_class_name("_6q-tv").get_attribute("src")
                 print(artist_pp)
 
-                #getting the post
-            
-                # # Stream the image from the url
-                # response = requests.get(artist_post, stream=True)
-
-                # # Was the request OK?
-                # if response.status_code != requests.codes.ok:
-                #     # Nope, error handling, skip file etc etc etc
-                #     continue
-                
-                # # Get the filename from the url, used for saving later
-                # file_name = artist_post.split('/')[-1]
-                
-                # # Create a temporary file
-                # lf = tempfile.NamedTemporaryFile()
-
-                # # Read the streamed image in sections
-                # for block in response.iter_content(1024 * 8):
-                    
-                #     # If no more file then stop
-                #     if not block:
-                #         break
-
-                #     # Write image block to temporary file
-                #     lf.write(block)
-
-                    # # Create the model you want to save the image to
-                    # image = Image()
-
-                    # # Save the temporary image to the model#
-                    # # This saves the model so be sure that it is valid
-                    # image.image.save(file_name, files.File(lf))
                 link = artist_post[c].get_attribute("src")
                 c=c+1
                 resp = requests.get(link)
@@ -170,23 +141,22 @@ def scrape(request):
                 # print(int(like_value)<=500, int(elapsed_time)>1, day=="h")
                 if int(like_value)<=5000 and (int(elapsed_time)>=1 and (day=="d"or day=='h')):
 
-                    
+                    tag_name = Tagname(tag=tag)
                     print("rrrrrrrrrrrrrrrrrrr")
-                    artist = Artist(artist_name = artist_name,
+                    artist = Posts(artist_name = artist_name,
                     artist_link=artist_link, likes = like_value,
                     elapsed_time = elapsed_time, 
                     artist_pp = artist_pp,
                     post_time = posted_on, 
                     post_link=link,
-                    tagname = tag
                     )
                     artist.instagram_post.save(file_name, files.File(fp))
                     # artist.instagram_post(file_name, files.File(lf))
 
-                    # tag_name = Tagname(tag=tag)
-
+                    
+                    tag_name.register()
                     artist.register()
-                    # tag_name.register()
+                    
                     print("wohooooooooooooooooooooooooooooooooooooooo")
 
 
@@ -203,24 +173,37 @@ def scrape(request):
         return redirect("adminpage.html")
 
 def artpage(request):
-    artists = None
-        
+    artists = None 
     Tags = Tagname.get_all_tags()
     TagId = request.GET.get('tagname')
+    query = request.GET.get('query')
+    
     if TagId:
-        artists = Artist.get_all_artists_by_tagid(TagId)
+        artists = Posts.get_all_artists_by_tagid(TagId)
+    elif query:
+        artists = Posts.objects.filter(artist_name__icontains=query)
     else:
-        artists= Artist.get_all_artists()
+        artists= Posts.get_all_artists()
+    
+    
+    
     data = {}
     data['artists']= artists
     data['tags'] = Tags
     return render(request, 'artpage.html', data)
 
-
+def about(request):
+    return render(request, "about.html")
     
 
+def adminlogin(request):
+    user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+    if user is not None:
+        return render(request, 'adminpage.html')
+    
+    return render(request, 'adminlogin.html')
     
     
-    
-    
-    
+def adminlogout(request):
+    logout(request)
+    return render(request, 'adminlogout.html')

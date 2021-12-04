@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Artist, Tagname
+from .models import Posts, Tagname
 # Register your models here.
 
-admin.site.register(Artist)
+admin.site.register(Posts)
 admin.site.register(Tagname)
