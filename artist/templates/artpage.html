@@ -5,7 +5,7 @@
 <div class="conatiner-fluid" style="margin-left: 10px; margin-top: 30px;">
         <div class="row mx-auto">
         <!-- filter -->
-            <div class="col-lg-3 mx-auto " style="background-color: rgb(248, 250, 252); border: 1.5px solid black; border-radius: 5px;">
+            <div class="col-lg-3 mx-auto " style="background-color: rgb(248, 250, 252); border: 1.5px solid black; border-radius: 5px;position: relative;">
                 <div class="list-group my-3">
                     <p>FILTERS : </p>
                     <div class="my-3">
@@ -33,12 +33,7 @@
             <div id='artists' class="col-lg-9 mx-auto" >
                 <div class="row mx-auto">
                     {% for artist in artists %}
-                    <link
-                        rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-                        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-                        crossorigin="anonymous"
-                        />
+                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
                         <div class="card mx-3 my-3" style="width: 18rem;">
                             <img class="card-img-top my-2" src="{{artist.instagram_post.url}}" alt="Card image cap"style="height:300px">
                             <div class="card-body">
@@ -47,7 +42,7 @@
                                 <span style="font-size:13px"> (#{{artist.tagname}})</span></p>
                                 </a>
                                 
-                                <span style="font-size:14px;"><i class="fas fa-heart"></i> {{artist.likes}} likes</span>
+                                <span style="font-size:14px;"><i class="fas fa-heart"> {{artist.likes}}</i>  likes</span>
                                 <span style="font-size:14px;"><i> </i>  |  </span>
                                 <span style="font-size:14px;"><i class="fas fa-clock"> {{artist.post_time}}</i></span>
                             
