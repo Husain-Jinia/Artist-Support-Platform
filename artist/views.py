@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 import time
 from .models import Posts
 import re
+import os
 from .models import Tagname
 import requests
 from django.core import files
@@ -22,8 +23,12 @@ def home(request):
 
 #scraper
 def scrape(request):
-
-    browser = webdriver.Firefox()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
     browser.get("https://www.instagram.com/?hl=en")
 
