@@ -95,7 +95,6 @@ def scrape(request):
                 posted_on = browser.find_element_by_class_name("Nzb55").get_attribute("title")
                 elapsed_time = browser.find_element_by_class_name("Nzb55").text
                 elapsed_time = re.split("\s", elapsed_time)
-                day = elapsed_time[1]
                 elapsed_time = elapsed_time[0]
 
                 #getting the name and link of the artist
@@ -116,7 +115,7 @@ def scrape(request):
 
                 close.click()
 
-                if int(like_value)<=5000 and (int(elapsed_time)>=1 and (day=="d"or day=='h')):
+                if int(like_value)<=5000:
                     if not Tagname.objects.filter(tag__icontains=tag):
 
                         tag_name = Tagname(tag=tag)
