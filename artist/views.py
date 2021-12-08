@@ -119,6 +119,7 @@ def scrape(request):
                     if not Tagname.objects.filter(tag__icontains=tag):
 
                         tag_name = Tagname(tag=tag)
+                        tag_name.register()
                         artist = Posts(artist_name = artist_name,
                         artist_link=artist_link, likes = like_value,
                         elapsed_time = elapsed_time, 
@@ -136,7 +137,7 @@ def scrape(request):
                         )
                     artist.instagram_post.save(file_name, files.File(fp))
                     
-                    tag_name.register()
+                    
                     artist.register()
 
                 else:
