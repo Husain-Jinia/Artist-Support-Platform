@@ -46,7 +46,7 @@ def scrape(request):
 
     login.click()
 
-    time.sleep(5)
+    time.sleep(7)
 
 
     tags=[]
@@ -62,7 +62,7 @@ def scrape(request):
             url= f"https://www.instagram.com/explore/tags/{tag}"
             browser.get(url)
 
-            time.sleep(3)
+            time.sleep(10)
 
             browser.execute_script("window.scrollTo(0, 2000);")
             pictures = browser.find_elements_by_css_selector("div[class='eLAPa']")
@@ -80,7 +80,7 @@ def scrape(request):
 
                 picture.click()
 
-                time.sleep(5)
+                time.sleep(10)
                 
                 #getting likes value
                 like = browser.find_element_by_partial_link_text("like")
@@ -140,10 +140,7 @@ def scrape(request):
                     
                     artist.register()
 
-                else:
-                    print("nice")
-
-                time.sleep(2)
+                time.sleep(10)
         
                 total_image_count+=1
             
