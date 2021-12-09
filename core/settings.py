@@ -151,6 +151,8 @@ AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.s3BotoStorage'
 
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
 MEDIA_URL = "/images/downloads/"
 MEDIA_ROOT = BASE_DIR
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
