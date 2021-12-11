@@ -80,7 +80,7 @@ def scrape(request):
 
                 picture.click()
 
-                time.sleep(2)
+                time.sleep(6)
                 
                 #getting likes value
                 like = browser.find_element_by_partial_link_text("like")
