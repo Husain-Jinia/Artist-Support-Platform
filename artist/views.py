@@ -32,7 +32,7 @@ def scrape(request):
 
     browser.get("https://www.instagram.com/?hl=en")
 
-    time.sleep(5)
+    time.sleep(2)
 
     username = browser.find_element_by_css_selector("[name='username']")
 
@@ -46,7 +46,7 @@ def scrape(request):
 
     login.click()
 
-    time.sleep(7)
+    time.sleep(3)
 
 
     tags=[]
@@ -80,7 +80,7 @@ def scrape(request):
 
                 picture.click()
 
-                time.sleep(10)
+                time.sleep(2)
                 
                 #getting likes value
                 like = browser.find_element_by_partial_link_text("like")
@@ -140,11 +140,11 @@ def scrape(request):
                     
                     artist.register()
 
-                time.sleep(10)
+                time.sleep(3)
         
                 total_image_count+=1
             
-        time.sleep(3600)
+        time.sleep(10)
 
         return redirect("adminpage.html")
 
