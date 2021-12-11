@@ -46,7 +46,7 @@ def scrape(request):
 
     login.click()
 
-    time.sleep(3)
+    time.sleep(5)
 
 
     tags=[]
