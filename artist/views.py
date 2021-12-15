@@ -153,7 +153,7 @@ def scrape(request):
             
         time.sleep(10)
 
-        return redirect("adminpage.html")
+        return redirect("adminpage")
 
 #explore page view
 def artpage(request):
