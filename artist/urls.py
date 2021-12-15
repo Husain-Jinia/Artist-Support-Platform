@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import adminlogout, artpage, contact, home, adminpage, scrape,about, adminlogin,logout, Signup,Login
+from .views import adminlogout, artpage,LikeView, contact, home, adminpage, scrape,about, adminlogin,logout, Signup,Login
 
 urlpatterns = [
     path('', home, name="homepage"),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('signup', Signup.as_view(), name="signup"),
     path('login', Login.as_view(),  name="login"),
     path('logout', logout,  name="logout"),
+    path('like/<int:pk>', LikeView, name='like_post'),
 ]

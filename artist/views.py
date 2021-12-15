@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 from django.http import HttpResponse
 from selenium import webdriver
@@ -15,13 +15,14 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from io import BytesIO
+from django.urls import reverse_lazy, reverse
 from .credentials import my_username, my_password
 from django.core.checks.messages import Error
 from django.http.response import HttpResponseRedirectBase
 from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth.hashers import  check_password, make_password
-from .models import Customer
+from .models import User
 from django.views import View
 
 # home view
@@ -169,6 +170,8 @@ def artpage(request):
     else:
         artists= Posts.get_all_artists()
 
+    stuff = get_object_or_404(Posts)
+    total_likes = stuff.total_likes()
     data = {}
     data['artists']= artists
     data['tags'] = Tags
@@ -210,7 +213,7 @@ class Login(View):
     def post(self, request):
         email = request.POST.get('email')
         password = request.POST.get('password')
-        customer = Customer.get_customer_by_email(email)
+        customer = User.get_customer_by_email(email)
         error_message = None
         if customer:
             flag = check_password(password, customer.password)
@@ -257,7 +260,7 @@ class Signup(View):
         }
         error_message = None
 
-        customer = Customer(first_name=first_name,
+        customer = User(first_name=first_name,
                                 last_name=last_name,
                                 phone_number = phone_number,
                                 email= email,
@@ -308,3 +311,9 @@ class Signup(View):
             error_message = 'Email Address already registered . . '
             
         return error_message
+
+def LikeView(request, pk):
+    post = get_object_or_404(Posts, id=request.POST.get('post_id'))
+    post.user_likes.add(request.customer)
+    return HttpResponseRedirect(reverse('artpage',args=[str(pk)]))
+

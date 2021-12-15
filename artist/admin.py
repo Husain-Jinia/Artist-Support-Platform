@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Posts, Tagname, Customer
+from .models import Posts, Tagname, User
 # Register your models here.
 
 admin.site.register(Posts)
 admin.site.register(Tagname)
-admin.site.register(Customer)
+admin.site.register(User)
