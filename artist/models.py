@@ -2,7 +2,7 @@ from django.db import models
 import  datetime
 # Create your models here.
 
-class Users(models.Model):
+class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=12)
@@ -20,14 +20,14 @@ class Users(models.Model):
     @staticmethod
     def get_customer_by_email(email):
         try:
-            return Users.objects.get(email = email)
+            return User.objects.get(email = email)
         except:
             return False
 
         
 
     def isExists(self):
-        if Users.objects.filter(email = self.email):
+        if User.objects.filter(email = self.email):
             return True
 
         return False
@@ -55,7 +55,7 @@ class Posts(models.Model):
     artist_pp  =models.CharField(max_length=500, null=True, default="")
     instagram_post =models.ImageField(upload_to='posts', null=True, blank=True, default="images/paper.jpg" ) 
     tagname = models.ForeignKey(Tagname, on_delete=models.CASCADE,null=True,blank=True, default="")
-    user_likes = models.ManyToManyField(Users, related_name='instagram_posts')
+    user_like = models.ManyToManyField(User, related_name='instagram_posts')
 
     def __str__(self):
         return f"{self.artist_name} {self.tagname}"

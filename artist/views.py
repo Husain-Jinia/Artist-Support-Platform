@@ -22,7 +22,7 @@ from django.http.response import HttpResponseRedirectBase
 from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth.hashers import  check_password, make_password
-from .models import Users
+from .models import User
 from django.views import View
 
 # home view
@@ -213,7 +213,7 @@ class Login(View):
     def post(self, request):
         email = request.POST.get('email')
         password = request.POST.get('password')
-        customer = Users.get_customer_by_email(email)
+        customer = User.get_customer_by_email(email)
         error_message = None
         if customer:
             flag = check_password(password, customer.password)
@@ -260,7 +260,7 @@ class Signup(View):
         }
         error_message = None
 
-        customer = Users(first_name=first_name,
+        customer = User(first_name=first_name,
                                 last_name=last_name,
                                 phone_number = phone_number,
                                 email= email,
