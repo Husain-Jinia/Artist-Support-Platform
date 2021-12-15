@@ -170,10 +170,10 @@ def artpage(request):
     else:
         artists= Posts.get_all_artists()
 
-    stuff = get_object_or_404(Posts)
-    total_likes = stuff.total_likes()
+    # stuff = get_object_or_404(Posts)
+    # total_likes = stuff.total_likes()
     data = {}
-    data['total likes']= total_likes
+    # data['total likes']= total_likes
     data['artists']= artists
     data['tags'] = Tags
     return render(request, 'artpage.html', data)
@@ -313,8 +313,8 @@ class Signup(View):
             
         return error_message
 
-def LikeView(request, pk):
-    post = get_object_or_404(Posts, id=request.POST.get('post_id'))
-    post.user_like.add(request.customer)
-    return HttpResponseRedirect(reverse('artpage',args=[str(pk)]))
+# def LikeView(request, pk):
+#     post = get_object_or_404(Posts, id=request.POST.get('post_id'))
+#     post.user_like.add(request.customer)
+#     return HttpResponseRedirect(reverse('artpage',args=[str(pk)]))
 
