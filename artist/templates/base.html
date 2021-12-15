@@ -19,12 +19,24 @@
         </div>
         <ul class="nav-links d-flex m-0">
         <i class="hide-toggle gg-close"></i>
-        <il class="nav-link"><a href="{% url 'homepage'%}">Home</a></il>
-        <il class="nav-link"><a href="{% url 'artpage'%}">Explore</a></il>
-        <il class="nav-link"><a href="{% url 'about'%}">About</a></il>
+        <il class="nav-link"><a style="text-decoration: none; color: white;" href="{% url 'homepage'%}">Home</a></il>
+        <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'artpage'%}">Explore</a></il>
+        <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'about'%}">About</a></il>
         {%if user.is_authenticated %}
         <il class="nav-link"><a href="{% url 'adminpage'%}">Admin</a></il>
         <il class="nav-link"><a href="{% url 'adminlogout'%}">Logout</a></il>
+        {%endif%}
+        {% if request.session.customer %}
+          <il>
+            <a class="nav-link active" style="text-decoration: none;" aria-current="page" href="/logout">Logout</a>
+          </il>
+          {% else %}
+          <il class="nav-item">
+            <a class="nav-link active float-lg-right" style="float: right; text-decoration: none;" aria-current="page" href="signup">Signup</a>
+          </il>
+          <il class="nav-item">
+            <a class="nav-link active float-lg-right" style="float: right; text-decoration: none;" aria-current="page" href="/login">Login</a>
+          </il>
         {%endif%}
         </ul>
         <div class="menu-toggle">
@@ -32,7 +44,6 @@
         </div>
     </div>
     </nav>
-    {% block content %}{% endblock content %}
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
         @import url("https://cdn.jsdelivr.net/npm/css.gg/icons/all.css");
