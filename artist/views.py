@@ -315,6 +315,6 @@ class Signup(View):
 
 def LikeView(request, pk):
     post = get_object_or_404(Posts, id=request.POST.get('post_id'))
-    post.user_likes.add(request.customer)
+    post.user_like.add(request.customer)
     return HttpResponseRedirect(reverse('artpage',args=[str(pk)]))
 

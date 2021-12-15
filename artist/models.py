@@ -64,7 +64,7 @@ class Posts(models.Model):
         self.save()
 
     def total_likes(self):
-        return self.user_likes.count()
+        return self.user_like.count()
 
     @staticmethod
     def get_all_artists():
