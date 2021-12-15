@@ -173,6 +173,7 @@ def artpage(request):
     stuff = get_object_or_404(Posts)
     total_likes = stuff.total_likes()
     data = {}
+    data['total likes']= total_likes
     data['artists']= artists
     data['tags'] = Tags
     return render(request, 'artpage.html', data)
