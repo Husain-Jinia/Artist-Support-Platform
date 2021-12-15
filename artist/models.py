@@ -55,7 +55,6 @@ class Posts(models.Model):
     artist_pp  =models.CharField(max_length=500, null=True, default="")
     instagram_post =models.ImageField(upload_to='posts', null=True, blank=True, default="images/paper.jpg" ) 
     tagname = models.ForeignKey(Tagname, on_delete=models.CASCADE,null=True,blank=True, default="")
-    # user_like = models.ManyToManyField(User, related_name='instagram_posts')
 
     def __str__(self):
         return f"{self.artist_name} {self.tagname}"
@@ -63,8 +62,6 @@ class Posts(models.Model):
     def register(self):
         self.save()
 
-    # def total_likes(self):
-    #     return self.user_like.count()
 
     @staticmethod
     def get_all_artists():
