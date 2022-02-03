@@ -73,7 +73,7 @@ while True:
 
             # like = browser.find_element_by_partial_link_text("like")
             # like_value = like.text
-            # print("bruhhhhhhhhhhhhhhhh"+like_value)
+            # print("log"+like_value)
             # like_value = re.split("\s", like_value)
             # like_value = like_value[0]
             # like_value = re.sub(",","",like_value)
