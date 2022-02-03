@@ -26,18 +26,6 @@
         <il class="nav-link"><a href="{% url 'adminpage'%}">Admin</a></il>
         <il class="nav-link"><a href="{% url 'adminlogout'%}">Logout</a></il>
         {%endif%}
-        {% if request.session.customer %}
-          <il>
-            <a class="nav-link active" style="text-decoration: none;" aria-current="page" href="/logout">Logout</a>
-          </il>
-          {% else %}
-          <il class="nav-item">
-            <a class="nav-link active float-lg-right" style="float: right; text-decoration: none;" aria-current="page" href="signup">Signup</a>
-          </il>
-          <il class="nav-item">
-            <a class="nav-link active float-lg-right" style="float: right; text-decoration: none;" aria-current="page" href="/login">Login</a>
-          </il>
-        {%endif%}
         </ul>
         <div class="menu-toggle">
         <i class="d-sm-block d-sm-none gg-menu-right"></i>
