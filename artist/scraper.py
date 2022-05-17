@@ -68,17 +68,17 @@ while True:
 
             time.sleep(5)
 
-            like_value = browser.find_element_by_xpath("div[@class='Igw0E']/div/a/span").text
-            print(like_value)
-
-            # like = browser.find_element_by_partial_link_text("like")
-            # like_value = like.text
-            # print("log"+like_value)
-            # like_value = re.split("\s", like_value)
-            # like_value = like_value[0]
-            # like_value = re.sub(",","",like_value)
-            # like_value = int(like_value)
+            # like_value = browser.find_element_by_xpath("div[@class='Igw0E']/div/a/span").text
             # print(like_value)
+
+            like = browser.find_element_by_partial_link_text("like")
+            like_value = like.text
+            print("log"+like_value)
+            like_value = re.split("\s", like_value)
+            like_value = like_value[0]
+            like_value = re.sub(",","",like_value)
+            like_value = int(like_value)
+            print(like_value)
 
             #getting the time it was posted on
             posted_on = browser.find_element_by_class_name("Nzb55").get_attribute("title")

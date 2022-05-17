@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from .views import adminlogout, artpage, contact, home, adminpage, scrape,about, adminlogin,logout
+from .views import *
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', home, name="homepage"),
@@ -12,4 +13,8 @@ urlpatterns = [
     path('adminlogout', adminlogout, name="adminlogout"),
     path('contact', contact, name='contact'),
     path('logout', logout,  name="logout"),
+    path('favourites/<int:pk>', favourite, name='favourite'),
+    path('register/',register, name='register'),
+    path('login/',auth_views.LoginView.as_view(template_name = 'users/login.html'), name='login'),
+    path('logout/',auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
 ]

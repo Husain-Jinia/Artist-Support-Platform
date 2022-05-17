@@ -198,3 +198,35 @@ def adminlogout(request):
     logout(request)
     return render(request, 'adminlogout.html')
 
+# Favourte feature
+def favourite(request,pk):
+    post = Posts.objects.get(pk=pk)
+    favd = False
+    for fav in post.favourite.all():
+        if fav == request.user:
+            favd == True
+            break
+    if not favd:
+        post.favourite.add(request.user)
+    if favd:
+        post.favourite.remove(request.user)
+
+    next  = request.POST.get('next','/artpage')
+    return HttpResponseRedirect(next)
+
+    
+
+from .forms import UserRegisterForm
+# Create your views here.
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form':form})
+

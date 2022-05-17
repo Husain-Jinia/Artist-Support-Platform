@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import  datetime
 # Create your models here.
 
@@ -14,6 +15,8 @@ class Tagname(models.Model):
     @staticmethod
     def get_all_tags():
         return Tagname.objects.all()
+
+
 
 
 class Posts(models.Model):
@@ -49,4 +52,8 @@ class Posts(models.Model):
     @staticmethod
     def get_artists_by_id(ids):
         return Posts.objects.filter(id__in = ids)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    favourite = models.ManyToManyField(Posts, blank=True,related_name='fav_articles')
 
