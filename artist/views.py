@@ -1,3 +1,4 @@
+import profile
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 from django.http import HttpResponse
@@ -5,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
-from .models import Posts
+from .models import Posts, Profile
 import re
 import os
 from .models import Tagname
@@ -202,14 +203,14 @@ def adminlogout(request):
 def favourite(request,pk):
     post = Posts.objects.get(pk=pk)
     favd = False
-    for fav in post.favourite.all():
+    for fav in Profile.favourite.all():
         if fav == request.user:
             favd == True
             break
     if not favd:
-        post.favourite.add(request.user)
+        Profile.favourite.add(request.user)
     if favd:
-        post.favourite.remove(request.user)
+        Profile.favourite.remove(request.user)
 
     next  = request.POST.get('next','/artpage')
     return HttpResponseRedirect(next)
