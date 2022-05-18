@@ -9,13 +9,13 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
     <!-- <a href='https://www.freepik.com/photos/abstract-background'>Abstract background photo created by rawpixel.com - www.freepik.com</a> -->
-    <title>UIA</title>
+    <title>SUNA</title>
 </head>
 <body>
     <nav class="navbar bg-dark text-white">
     <div class="container">
         <div class="navbar-brand fw-bold ps-3">
-        <a href="{% url 'homepage'%}" style="font-size:35px;">UIA</a>
+        <a href="{% url 'homepage'%}" style="font-size:35px;">SUNA</a>
         </div>
         <ul class="nav-links d-flex m-0">
         <i class="hide-toggle gg-close"></i>
@@ -23,6 +23,7 @@
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'artpage'%}">Explore</a></il>
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'about'%}">About</a></il>
         {%if user.is_authenticated %}
+        <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'favourite-page'%}">favourite</a></il>
         <il class="nav-link"><a href="{% url 'adminpage'%}">Admin</a></il>
         <il class="nav-link"><a href="{% url 'adminlogout'%}">Logout</a></il>
         {%endif%}

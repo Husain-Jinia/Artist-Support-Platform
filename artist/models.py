@@ -29,6 +29,7 @@ class Posts(models.Model):
     artist_pp  =models.CharField(max_length=500, null=True, default="")
     instagram_post =models.ImageField(upload_to='posts', null=True, blank=True, default="images/paper.jpg" ) 
     tagname = models.ForeignKey(Tagname, on_delete=models.CASCADE,null=True,blank=True, default="")
+    fav = models.ManyToManyField(User, blank=True,related_name='fav_articles')
 
     def __str__(self):
         return f"{self.artist_name} {self.tagname}"
@@ -53,7 +54,5 @@ class Posts(models.Model):
     def get_artists_by_id(ids):
         return Posts.objects.filter(id__in = ids)
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    favourite = models.ManyToManyField(Posts, blank=True,related_name='fav_articles')
+
 

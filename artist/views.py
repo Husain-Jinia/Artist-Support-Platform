@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
-from .models import Posts, Profile
+from .models import Posts
 import re
 import os
 from .models import Tagname
@@ -203,18 +203,22 @@ def adminlogout(request):
 def favourite(request,pk):
     post = Posts.objects.get(pk=pk)
     favd = False
-    for fav in Profile.favourite.all():
+    for fav in post.fav.all():
         if fav == request.user:
             favd == True
             break
     if not favd:
-        Profile.favourite.add(request.user)
+        post.fav.add(request.user)
     if favd:
-        Profile.favourite.remove(request.user)
+        post.fav.remove(request.user)
 
     next  = request.POST.get('next','/artpage')
     return HttpResponseRedirect(next)
 
+def favouriteArtists(request):
+    artists = Posts.objects.all()
+    fav_artists  = Posts.objects.filter(fav =request.user)
+    return render(request, 'favourite-artists.html', {'artists':fav_artists})
     
 
 from .forms import UserRegisterForm

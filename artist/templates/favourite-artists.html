@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+
+<div class="conatiner" style=" margin-top: 30px;width:100vw;">
+    <div class="row ">
+        <div id='artists' class="col-lg-9" >
+            <div class="row ">
+                {% for artist in artists %}
+                <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+                    <div class="card mx-3 my-3" style="width: 18rem;">
+                        <img class="card-img-top my-2" src="{{artist.instagram_post.url}}" alt="Card image cap"style="height:300px">
+                        <div class="card-body">
+                            <a href="{{artist.artist_link}}" style="text-decoration:none; color:black">
+                            <p><span class="card-text">{{artist.artist_name}}</span>
+                            <span style="font-size:13px"> (#{{artist.tagname}})</span></p>
+                            </a>
+                            
+                            <span style="font-size:14px;"><i class="fas fa-heart"> {{artist.likes}}</i>  likes</span>
+                            <span style="font-size:14px;"><i> </i>  |  </span>
+                            <span style="font-size:14px;"><i class="fas fa-clock"> {{artist.post_time}}</i></span>
+                            <form class="mx-2" action="{% url 'favourite' artist.pk %}" ,method = "POST">
+                                {%csrf_token%}
+                                <input type="hidden" name="next" value="{{request.path}}">
+                                <button style ="background-color:transparent; border:none;box-shadow:none" type = "submit"><i class="far fa-thumbs-down"></i></button> 
+                            </form>
+                    
+                        </div>
+                    </div>    
+                {% endfor %} 
+            </div>
+        </div>
+{% endblock content %}
