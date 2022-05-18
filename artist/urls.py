@@ -16,6 +16,6 @@ urlpatterns = [
     path('favourites/<int:pk>', favourite, name='favourite'),
     path('register/',register, name='register'),
     path('favouritepage', favouriteArtists, name="favourite-page"),
-    path('login/',auth_views.LoginView.as_view(template_name = 'users/login.html'), name='login'),
-    path('logout/',auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
+    path('login/',auth_views.LoginView.as_view(template_name = 'login.html'), name='login'),
+    path('logout/',auth_views.LogoutView.as_view(template_name = 'logout.html'), name='logout'),
 ]
