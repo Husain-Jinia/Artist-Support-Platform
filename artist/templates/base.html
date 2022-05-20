@@ -24,8 +24,6 @@
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'about'%}">About</a></il>
         {%if user.is_authenticated %}
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'favourite-page'%}">favourite</a></il>
-        <!-- <il class="nav-link"><a href="{% url 'adminpage'%}">Admin</a></il>
-        <il class="nav-link"><a href="{% url 'adminlogout'%}">Logout</a></il> -->
         {%endif%}
         </ul>
         <div class="menu-toggle">
