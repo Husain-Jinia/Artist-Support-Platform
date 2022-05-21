@@ -2,7 +2,8 @@
 {%load static%}
 {% block content %}
 
-<div class="conatiner" style=" margin-top: 30px;width:100vw;">
+<div class="conatiner-fluid" style=" margin-top: 30px;width:100vw;">
+    {%if user.is_authenticated %}
     <div class="row ">
         <div id='artists' class="col-lg-9" >
             <div class="row ">
@@ -14,8 +15,7 @@
                             <a href="{{artist.artist_link}}" style="text-decoration:none; color:black">
                             <p><span class="card-text">{{artist.artist_name}}</span>
                             <span style="font-size:13px"> (#{{artist.tagname}})</span></p>
-                            </a>
-                            
+                            </a>          
                             <span style="font-size:14px;"><i class="fas fa-heart"> {{artist.likes}}</i>  likes</span>
                             <span style="font-size:14px;"><i> </i>  |  </span>
                             <span style="font-size:14px;"><i class="fas fa-clock"> {{artist.post_time}}</i></span>
@@ -29,5 +29,10 @@
                     </div>    
                 {% endfor %} 
             </div>
+            {%else%}
+            <div>
+                <h1>Register or login first !!</h1>
+            </div>
+            {%endif%}
         </div>
 {% endblock content %}

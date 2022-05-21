@@ -22,8 +22,13 @@
         <il class="nav-link"><a style="text-decoration: none; color: white;" href="{% url 'homepage'%}">Home</a></il>
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'artpage'%}">Explore</a></il>
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'about'%}">About</a></il>
+
         {%if user.is_authenticated %}
         <il class="nav-link"><a style="text-decoration: none; color: white" href="{% url 'favourite-page'%}">favourite</a></il>
+        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+        {%else%}
+        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
         {%endif%}
         </ul>
         <div class="menu-toggle">
