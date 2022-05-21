@@ -172,6 +172,7 @@ def artpage(request):
     data = {}
     data['artists']= artists
     data['tags'] = Tags
+    post = Posts.objects.all()
     return render(request, 'artpage.html', data)
 
 #about page view
@@ -203,14 +204,20 @@ def adminlogout(request):
 def favourite(request,pk):
     post = Posts.objects.get(pk=pk)
     favd = False
+    bookmarked = Posts.objects.get(pk=pk)
     for fav in post.fav.all():
         if fav == request.user:
-            favd == True
+            favd = True
             break
     if not favd:
         post.fav.add(request.user)
+        bookmarked.favcheck = True
+        bookmarked.save()
     if favd:
         post.fav.remove(request.user)
+        bookmarked.favcheck = False
+        bookmarked.save()
+    
 
     next  = request.POST.get('next','/artpage')
     return HttpResponseRedirect(next)

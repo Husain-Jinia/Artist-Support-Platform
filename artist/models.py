@@ -30,6 +30,7 @@ class Posts(models.Model):
     instagram_post =models.ImageField(upload_to='posts', null=True, blank=True, default="images/paper.jpg" ) 
     tagname = models.ForeignKey(Tagname, on_delete=models.CASCADE,null=True,blank=True, default="")
     fav = models.ManyToManyField(User, blank=True,related_name='fav_articles')
+    favcheck = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.artist_name} {self.tagname}"

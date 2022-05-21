@@ -5,62 +5,71 @@
 <div class="conatiner" style=" margin-top: 30px;width:100vw;">
         <div class="row ">
         <!-- filter -->
-            <div class="col-lg-3 mx-auto " style="background-color: rgb(248, 250, 252); border: 1.5px solid black; border-radius: 5px;position: relative;max-width: 360px;">
-                <div class="list-group my-3">
-                    <p>FILTERS : </p>
-                    <div class="my-3">
-                        <form method="get" class="d-flex" style="flex-direction: column;">
-                            <input type="search" class="py-2" style=" border-radius: 5px; border: 1px solid black; text-align: center; font-size: 19px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" name="query" aria-label="Search" id="querys" placeholder="Enter artist name"/> 
-                            <input type="submit" class="btn btn-outline-dark my-2 py-1" style="font-weight: 500;" value="SEARCH">
-                        </form>
-                    </div>
-                    
-                    <a href="/artpage" class="list-group-item 
-                    list-group-item-action ">All hashtags</a>
-                    {% for tag in tags %}
-                    <a href="/artpage?tagname={{tag.id}}" class="list-group-item 
-                    list-group-item-action ">#{{tag.tag}}</a>
-                    {% endfor %}
-                    
-                    <div style="object-position: center; margin-top: 7%;">
-                        <p>CHECK MY PAGE OUT : </p>
-                        <img src="{% static "images/scan.jpeg"%}" style="width:100%; height: 100%; padding-top: 1%;">
-                    </div>
-                    
-                </div>
-            </div>
             
+            <div class="col-lg-3 mx-auto "  style="background-color: rgb(248, 250, 252); border: 1.5px solid black; border-radius: 5px;position: relative;max-width: 360px;">
+                <button class="btn btn-outline-dark my-3 mx-1" onclick="myFunction()">Hide</button>
+                    <div class="list-group my-3" id="hide">
+                        <p>FILTERS : </p>
+                        <div class="my-3">
+                            <form method="get" class="d-flex" style="flex-direction: column;">
+                                <input type="search" class="py-2" style=" border-radius: 5px; border: 1px solid black; text-align: center; font-size: 19px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" name="query" aria-label="Search" id="querys" placeholder="Enter artist name"/> 
+                                <input type="submit" class="btn btn-outline-dark my-2 py-1" style="font-weight: 500;" value="SEARCH">
+                            </form>
+                        </div>
+                        
+                        <a href="/artpage" class="list-group-item 
+                        list-group-item-action ">All hashtags</a>
+                        {% for tag in tags %}
+                        <a href="/artpage?tagname={{tag.id}}" class="list-group-item 
+                        list-group-item-action ">#{{tag.tag}}</a>
+                        {% endfor %}
+                        
+                        <div style="object-position: center; margin-top: 7%;">
+                            <p>CHECK MY PAGE OUT : </p>
+                            <img src="{% static "images/scan.jpeg"%}" style="width:100%; height: 100%; padding-top: 1%;">
+                        </div>
+                        
+                </div>
+                
+            </div>
+
             <div id='artists' class="col-lg-9" >
                 <div class="row ">
                     {% for artist in artists %}
-                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-                        <div class="card mx-3 my-3" style="width: 18rem;">
-                            <img class="card-img-top my-2" src="{{artist.instagram_post.url}}" alt="Card image cap"style="height:300px">
+
+                        <div class="card mx-3 my-3" style="width: 25rem;">
+                            <img class="card-img-top my-2" src="{{artist.instagram_post.url}}" alt="Card image cap"style="height:420px">
                             <div class="card-body">
                                 <a href="{{artist.artist_link}}" style="text-decoration:none; color:black">
                                 <p><span class="card-text">{{artist.artist_name}}</span>
                                 <span style="font-size:13px"> (#{{artist.tagname}})</span></p>
                                 </a>
                                 
-                                <span style="font-size:14px;"><i class="fas fa-heart"> {{artist.likes}}</i>  likes</span>
+                                <span style="font-size:14px;"><i class=""> {{artist.likes}}</i>  likes</span>
                                 <span style="font-size:14px;"><i> </i>  |  </span>
-                                <span style="font-size:14px;"><i class="fas fa-clock"> {{artist.post_time}}</i></span>
+                                <span style="font-size:14px;"><i class=""> {{artist.post_time}}</i></span>
                                 {%if user.is_authenticated %}
-                                    <span>
-                                        <form class="mx-2" action="{% url 'favourite' artist.pk %}" ,method = "POST">
-                                            {%csrf_token%}
-                                            <input type="hidden" name="next" value="{{request.path}}">
-                                            <button style ="background-color:transparent; border:none;box-shadow:none" type = "submit"><i class="far fa-thumbs-down"></i></button> 
-                                        </form>
-                                    </span>
+                                <span>
+                                    <form   action="{% url 'favourite' artist.pk %}" ,method = "POST">
+                                        {%csrf_token%}
+                                        <input type="hidden" name="next" value="{{request.path}}">
+                                        <button style ="background-color:transparent; border:none;box-shadow:none; color:black"  type = "submit"><img style="height:16px; width:16px;"src="../static/images/bookmark.png"></img></button> 
+                                        {% if artist.favcheck%}
+                                            <p>bookmarked</p>
+                                        {% endif %}
+                                    </form>
+                                </span>
                                 {%endif%}
+                                
                             </div>
                         </div>    
                     {% endfor %} 
                 </div>
             </div>
+
         </div>
     </div>
+   
     <style>
         body{
             /* background-image: url("../static/images/Background2.png");
@@ -73,7 +82,17 @@
             min-height: 100vh;
         }
     </style>
-
+    <script>
+        function myFunction() {
+          var x = document.getElementById("hide");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/faea57e258.js" crossorigin="anonymous"></script>
 {% endblock content %}
 
                         
